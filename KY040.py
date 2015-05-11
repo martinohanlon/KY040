@@ -32,11 +32,12 @@ class KY040:
         GPIO.remove_event_detect(self.switchPin)
     
     def _clockCallback(self, pin):
-        data = GPIO.input(self.dataPin)
-        if data == 1:
-            self.rotaryCallback(self.ANTICLOCKWISE)
-        else:
-            self.rotaryCallback(self.CLOCKWISE)
+        if GPIO.input(self.clockPin) == 0:
+            data = GPIO.input(self.dataPin)
+            if data == 1:
+                self.rotaryCallback(self.ANTICLOCKWISE)
+            else:
+                self.rotaryCallback(self.CLOCKWISE)
 
     def _switchCallback(self, pin):
         if GPIO.input(self.switchPin) == 0:
