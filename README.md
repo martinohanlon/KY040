@@ -7,3 +7,4 @@ A python module for reading the values from a KY040 rotary encoder module using 
 
 ##Version history
 * 0.1 - Initial stable version
+* 0.2 - Minor improvement
