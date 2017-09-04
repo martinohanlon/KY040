@@ -31,6 +31,14 @@ def switchPressed():
 # Create a KY040 and start it
 ky040 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed)
 ky040.start()
+
+# Keep your proccess running
+try:
+    while True:
+        sleep(0.1)
+finally:
+    ky040.stop()
+    GPIO.cleanup()
 ```
 
 If you're not using switch button, only listen for rotary change:
@@ -47,6 +55,14 @@ def rotaryChange(direction):
 # Create a KY040 and start it
 ky040 = KY040(CLOCKPIN, DATAPIN, rotaryCallback=rotaryChange)
 ky040.start()
+
+# Keep your proccess running
+try:
+    while True:
+        sleep(0.1)
+finally:
+    ky040.stop()
+    GPIO.cleanup()
 ```
 
 Using a custom bounce time:
