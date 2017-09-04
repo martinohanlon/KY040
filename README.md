@@ -12,6 +12,8 @@ http://www.stuffaboutcode.com/2015/05/raspberry-pi-and-ky040-rotary-encoder.html
 
 ## Usage
 
+Listen for rotary change and switch button press:
+
 ``` python
 # Define your pins
 CLOCKPIN = 5
@@ -31,10 +33,34 @@ ky040 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed)
 ky040.start()
 ```
 
+If you're not using switch button, only listen for rotary change:
+
+``` python
+# Define your rotary pins
+CLOCKPIN = 5
+DATAPIN = 6
+
+# Callback for rotary change
+def rotaryChange(direction):
+    print "turned - " + str(direction)
+
+# Create a KY040 and start it
+ky040 = KY040(CLOCKPIN, DATAPIN, rotaryCallback=rotaryChange)
+ky040.start()
+```
+
+Using a custom bounce time:
+
+``` python
+# Create a KY040 and start it
+ky040 = KY040(CLOCKPIN, DATAPIN, SWITCHPIN, rotaryChange, switchPressed, rotaryBouncetime=40, switchBouncetime=40)
+ky040.start()
+```
+
 
 ## Wiring
 
-![Wiring](RaspberryPiKY040_bb.jpg)
+<img src="RaspberryPiKY040_bb.jpg" alt="KY040 Wiring schema" width="500">
 
 
 ## Version history
